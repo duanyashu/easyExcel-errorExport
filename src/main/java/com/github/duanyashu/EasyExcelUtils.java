@@ -1,6 +1,6 @@
-package cn.tuodayun;
+package com.github.duanyashu;
 
-import cn.tuodayun.listener.EasyExcelListener;
+import com.github.duanyashu.listener.EasyExcelListener;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.alibaba.excel.write.builder.ExcelWriterBuilder;
@@ -73,7 +73,7 @@ public class EasyExcelUtils {
      * @return 处理监听器
      * @throws Exception
      */
-    public static EasyExcelListener webImportExcel(HttpServletResponse response,InputStream fileInputStream, Class clazz) throws Exception{
+    public static EasyExcelListener webImportExcel(HttpServletResponse response, InputStream fileInputStream, Class clazz) throws Exception{
         return webImportExcel(response,fileInputStream,null,clazz,true);
     }
 
