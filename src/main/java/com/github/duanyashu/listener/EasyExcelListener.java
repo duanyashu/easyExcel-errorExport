@@ -5,8 +5,6 @@ import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
 import com.alibaba.excel.exception.ExcelAnalysisException;
 import com.alibaba.excel.util.StringUtils;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.duanyashu.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -77,7 +75,6 @@ public class EasyExcelListener <T>  extends AnalysisEventListener<T> {
      */
     @Override
     public void invoke(T t, AnalysisContext analysisContext) {
-        String errMsg;
         Map<Integer, String> resultMap = null;
         try {
             //根据excel数据实体中的javax.validation + 正则表达式来校验excel数据
@@ -200,18 +197,11 @@ public class EasyExcelListener <T>  extends AnalysisEventListener<T> {
      */
     private void exportErrorExcel() throws IOException {
         //错误结果集
-        List<T> userResultList = errList.stream().map(excelImportErrObjectDto -> {
-            T t = null;
-            try {
-                ObjectMapper om = new ObjectMapper();
-                t = om.readValue(om.writeValueAsString(excelImportErrObjectDto.getObject()), clazz);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-            return t;
+        List<T> userResultList = errList.stream().map(excelImportErrDto -> {
+            return (T) excelImportErrDto.getObject();
         }).collect(Collectors.toList());
-        List<Map<Integer,String>> errMsgList = errList.stream().map(excelImportErrObjectDto -> {
-            return excelImportErrObjectDto.getCellMap();
+        List<Map<Integer,String>> errMsgList = errList.stream().map(excelImportErrDto -> {
+            return excelImportErrDto.getCellMap();
         }).collect(Collectors.toList());
         if (userResultList.size()>0){
             //导出excel

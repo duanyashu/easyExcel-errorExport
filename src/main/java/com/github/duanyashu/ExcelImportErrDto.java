@@ -1,6 +1,5 @@
 package com.github.duanyashu;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -8,15 +7,15 @@ import java.util.Map;
  * @author: duanyashu
  * @time: 2020-07-10 09:15
  */
-public class ExcelImportErrDto<T> {
+public class ExcelImportErrDto {
 
-    private T object;
+    private Object object;
 
     private Map<Integer,String> cellMap = null;
 
     public ExcelImportErrDto(){}
 
-    public ExcelImportErrDto(T object,Map<Integer,String> cellMap){
+    public ExcelImportErrDto(Object object,Map<Integer,String> cellMap){
         this.object = object;
         this.cellMap = cellMap;
     }
@@ -33,7 +32,7 @@ public class ExcelImportErrDto<T> {
         return object;
     }
 
-    public void setObject(T object) {
+    public void setObject(Object object) {
         this.object = object;
     }
 
