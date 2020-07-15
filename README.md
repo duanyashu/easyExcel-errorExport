@@ -1,4 +1,4 @@
-# easyExcel的封装，实现导入错误信息的批注提示导出
+# easyExcel的封装，实现导入数据，对错误信息添加批注提示导出
 ### Maven 坐标
     <dependency>
       <groupId>com.github.duanyashu</groupId>
