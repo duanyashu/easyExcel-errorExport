@@ -1,4 +1,10 @@
 # easyExcel的封装，实现导入错误信息的批注提示导出
+### Maven 坐标
+    <dependency>
+      <groupId>com.github.duanyashu</groupId>
+      <artifactId>easyExcel-errorExport</artifactId>
+      <version>1.0.0</version>
+    </dependency>
 ### 使用说明
     @RequestMapping("/file")
         @ResponseBody
