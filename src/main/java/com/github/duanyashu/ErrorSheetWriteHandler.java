@@ -65,7 +65,7 @@ public class ErrorSheetWriteHandler  extends AbstractRowWriteHandler {
         Drawing<?> drawingPatriarch = sheet.createDrawingPatriarch();
         //创建一个批注
         Comment comment =
-                drawingPatriarch.createCellComment(new XSSFClientAnchor(0, 0, 0, 0, (short) 3, 3, (short) 5, 6));
+                drawingPatriarch.createCellComment(new XSSFClientAnchor(0, 0, 0, 0, 0,0,2,2));
         // 输入批注信息
         comment.setString(new XSSFRichTextString(msg));
         // 将批注添加到单元格对象中

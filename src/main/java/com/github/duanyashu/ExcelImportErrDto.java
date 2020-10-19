@@ -22,7 +22,7 @@ public class ExcelImportErrDto {
 
     @Override
     public String toString() {
-        return "ExcelImportErrObjectDto{" +
+        return "ExcelImportErrDto{" +
                 "object=" + object +
                 ", cellMap=" + cellMap +
                 '}';

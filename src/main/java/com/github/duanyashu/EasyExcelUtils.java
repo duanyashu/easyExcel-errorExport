@@ -7,7 +7,6 @@ import com.alibaba.excel.write.metadata.style.WriteCellStyle;
 import com.alibaba.excel.write.style.HorizontalCellStyleStrategy;
 import com.github.duanyashu.listener.EasyExcelListener;
 import org.apache.poi.ss.usermodel.IndexedColors;
-
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -17,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @description:
+ * @description: 处理工具类
  * @author: duanyashu
  * @time: 2020-07-10 09:47
  */
