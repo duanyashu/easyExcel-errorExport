@@ -3,7 +3,7 @@
     <dependency>
       <groupId>com.github.duanyashu</groupId>
       <artifactId>easyExcel-errorExport</artifactId>
-      <version>1.0.0</version>
+      <version>1.1.1</version>
     </dependency>
 ### 使用说明
     @RequestMapping("/file")
