@@ -1,11 +1,41 @@
 # easyExcel的封装，实现导入数据，对错误信息添加批注提示导出
+![输入图片说明](Snipaste_2023-03-02_14-29-46.png)
 ### Maven 坐标
     <dependency>
       <groupId>com.github.duanyashu</groupId>
       <artifactId>easyExcel-errorExport</artifactId>
-      <version>1.1.1</version>
+      <version>1.2.0</version>
     </dependency>
+### 说明
+  为了适应现在前后端分离 1.2.0 版本不与之前版本兼容 删除了servlet依赖,错误文件下载改为自己实现
 ### 使用说明
+
+  1.2.0版本使用方式
+
+    @RequestMapping("/file")
+    @ResponseBody
+    public ReslutData uploadFile(HttpServletResponse response,MultipartFile file) throws Exception {
+        EasyExcelListener easyExcelListener = EasyExcelUtils.webImportExcel(file.getInputStream(),UserImpost.class);
+        List<ExcelImportErrDto> errorList = easyExcelListener.getErrList();
+        List userResultList = errorList.stream().map(excelImportErrDto -> {
+            return excelImportErrDto.getErrObj();
+        }).collect(Collectors.toList());
+        List errMsgList = errorList.stream().map(excelImportErrDto -> {
+            return excelImportErrDto.getCellMap();
+        }).collect(Collectors.toList());
+        if (errorList!=null && errorList.size()>0){
+            FileOutputStream outputStream = new FileOutputStream("D:\\导入不通过数据.xlsx");
+            EasyExcelUtils.webWriteExcel(outputStream,userResultList,UserImpost.class,errMsgList,"导入失败数据");
+            System.out.println("完成 ");
+          return  ReslutData.fail("导入失败数"+errorList.size(),"对应错误xlsx临时下载路径");
+        }else{
+          return ReslutData.success();}
+    }
+  
+  
+
+  1.1.3版本使用方式
+
     @RequestMapping("/file")
         @ResponseBody
         public ReslutData uploadFile(HttpServletResponse response,MultipartFile file){
@@ -41,7 +71,7 @@
                 //成功结果集
                 List<UserImpost> successList = new ArrayList<>();
                 //错误数组
-                List<ExcelImportErrObjectDto> errList = new ArrayList<>();
+                List<ExcelImportErrDto> errList = new ArrayList<>();
                 Map<Integer,String> cellErrColMap= new HashMap<>();
                 for (int i = 0;i<userList.size() ;i++) {
                     UserImpost user = userList.get(i);
